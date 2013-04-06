@@ -1,0 +1,6 @@
+TO-DO
+
+
+Extras:
+-responsive
+-cool simple design, something like http://www.razorfish.com/ maybe :)
