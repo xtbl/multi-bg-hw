@@ -26,7 +26,7 @@ APP.investment = (function($) {
 		//TODO
 		// this should return an array of checkbox selects and another for labels
 	},
-	//checkbox selector list. can be modified in config for convenience and performance
+	//checkbox selector list. can be modified in here for convenience and also performance
 	checkboxList = {
 		cb1: {
 			check: 	$('#chkbox-a'),
@@ -67,62 +67,81 @@ APP.investment = (function($) {
 					qText: 	'Q1-2013' 
 				}
 			},
-			subsequentQuarters = {
-				q1: invQ1,
-				y1: invYear1,
-				q2: invQ2,
-				y2: invYear2,
-				q3: invQ3,
-				y3: invYear3,
+			nextQuarters = {
+				nextQ1: {
+					q: 		'atestQ1',
+					year: 	'a2099',
+					qText: 	'aQ1-2013'
+				},
+				nextQ2: {
+					q: 		'btestQ1',
+					year: 	'b2099',
+					qText: 	'bQ1-2013'	
+				},
+				nextQ3: {
+					q: 		'ctestQ1',
+					year: 	'c2099',
+					qText: 	'cQ1-2013'
+				}
+
 			};
 			// TODO
 			// this should return an array of quarters and year text format or 
 			// the same array in value format, you can use an options object
-			return subsequentQuarters;	
+			return nextQuarters;	
 		}
 	},
 	updateCheckboxes = function(){
-		//TODO 
+		//	TODO 
 		//	change this chkbox1 objects into an array to loop
 		//	generate the full Q1 2012 option
-		config.chkBox1.attr('value',quarter.nextInvestments().q1 
-				+ '-' + quarter.nextInvestments().y1);
-		config.chkBox1Lbl.text(quarter.nextInvestments().q1 
-				+ '-' + quarter.nextInvestments().y1);
-		
-		config.chkBox2.attr('value',quarter.nextInvestments().q2 
-				+ '-' + quarter.nextInvestments().y2);
-		config.chkBox2Lbl.text(quarter.nextInvestments().q2 
-				+ '-' + quarter.nextInvestments().y2);
-		
-		config.chkBox3.attr('value',quarter.nextInvestments().q3 
-				+ '-' + quarter.nextInvestments().y3);
-		config.chkBox3Lbl.text(quarter.nextInvestments().q3 
-				+ '-' + quarter.nextInvestments().y3);
 		
 		console.log('checkboxList scope test: '+checkboxList.cb1.check);
 
-		checkboxList.cb1.check.attr('test','this works outside for!');
+		// assign subsequent investment values to checkboxes
+		checkboxList.cb1.check.attr('value', quarter.nextInvestments().nextQ1.q);
+		checkboxList.cb1.cLabel.text( quarter.nextInvestments().nextQ1.qText );
+		
+		checkboxList.cb2.check.attr('value', quarter.nextInvestments().nextQ2.q);
+		checkboxList.cb2.cLabel.text( quarter.nextInvestments().nextQ2.qText );
+		
+		checkboxList.cb3.check.attr('value', quarter.nextInvestments().nextQ3.q);
+		checkboxList.cb3.cLabel.text( quarter.nextInvestments().nextQ3.qText );
 
-		for(var i in checkboxList ){
-			//if 
-			//i.check.attr('value','');
-			console.log('cbox is: ' + checkboxList[i].check.attr('forworks','works!') );
+
+		// alternative version
+		//var nextInv = quarter.nextInvestments();
+		// assign subsequent investments values to checkboxes
+		/*
+		for(var i in checkboxList ){		
+			for(var j in nextInv ){
+				checkboxList[i].check.attr('value', nextInv[j].q);
+				checkboxList[i].cLabel.text( nextInv[j].qText );
+			console.log('nextInv is : ' + nextInv[j].q );
 			checkboxList.cb1.check.attr('test','this works inside for!');
-		}
+			}
 
-		for(var i in quarter.nextInvestments() ){
-			//if 
-
-			console.log('quarter stuff is: '+i);
 		}
+		*/
 
 		console.log('updating checkboxes'+quarter.nextInvestments().y1);
 	},
+	attachUIEvents = function (){
+		config.cycleSelector.change(function(){
+			var usrSelection = config.cycleSelector.find(":selected").text();
+			alert(usrSelection);
+			updateCheckboxes();
+		});
+
+
+	},
+
+
 	// validate avoid more than two checks http://api.jquery.com/attr/
 	
 	init = function() {
 		console.log('init!');
+		attachUIEvents();
 		//getMonthQuarter( monthNum )
 		//setQuarterYear(month,year)
 
@@ -132,8 +151,7 @@ APP.investment = (function($) {
 		init: init,
 		thisquarter: quarter.getQuarterByMonth,
 		nextInvestments: quarter.nextInvestments,
-		updateCheckboxes: updateCheckboxes,
-		checkboxList: checkboxList
+		updateCheckboxes: updateCheckboxes
 	};
 
 }(jQuery));
