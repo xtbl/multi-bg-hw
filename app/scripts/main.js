@@ -10,6 +10,7 @@ var APP = APP || {};
 APP.investment = (function($) {
 	//private
 	var date,
+	checkboxesChecked = 0,
 	monthSelect = 12,	//replace with real selection
 	yearSelect,
 	selectedQuarter,
@@ -124,15 +125,30 @@ APP.investment = (function($) {
 		}
 		*/
 
-		console.log('updating checkboxes'+quarter.nextInvestments().y1);
+		// uncheck all checkboxes
+		$('.checkbox-wrapper input[type=checkbox]').attr('checked',false);
 	},
-	attachUIEvents = function (){
+	checkboxValidation = function() {
+		//checkboxesChecked = 0;
+		$('.checkbox-wrapper input[type=checkbox]').each(function() {
+			if( $(this).is(':checked') ){
+				checkboxesChecked += 1;
+			}
+			console.log( 'is checked: ' + $(this).is(':checked') );
+		});
+		console.log('checkbox checked: '+ checkboxesChecked);
+	},
+	attachUIEvents = function() {
+		// investment cycle selection
 		config.cycleSelector.change(function(){
 			var usrSelection = config.cycleSelector.find(":selected").text();
-			alert(usrSelection);
+			console.log('selected: ' + usrSelection);
 			updateCheckboxes();
 		});
-
+		// checkbox change
+		$('.checkbox-wrapper input[type=checkbox]').change(function(){
+			checkboxValidation();
+		});
 
 	},
 
@@ -150,8 +166,7 @@ APP.investment = (function($) {
 	return {
 		init: init,
 		thisquarter: quarter.getQuarterByMonth,
-		nextInvestments: quarter.nextInvestments,
-		updateCheckboxes: updateCheckboxes
+		nextInvestments: quarter.nextInvestments
 	};
 
 }(jQuery));
