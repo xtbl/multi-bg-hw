@@ -9,25 +9,28 @@ body {
 	margin: 0 auto;
 	max-width: 95%;
 }
-.col-container {
-	width: 100%;
-	clear: both;
-}
-
-div.col-container div {
-	width: 30%;
-	padding: 0.2% 1% 0.2% 1%;
-	float: left;
-	border-right: 1px solid #000;
-}
 .block-content {
 	clear: both;
+	padding-top: 10px;
 }
 .block-content h2 {
 	width: 100%;
 	text-align: center;
 	border-top: 1px dashed #000;
 	border-bottom: 1px dashed #000;
+}
+/* ==========================================================================
+   Section 1
+   ========================================================================== */
+.col-container {
+	width: 100%;
+	clear: both;
+}
+div.col-container div {
+	width: 30%;
+	padding: 0.2% 1% 0.2% 1%;
+	float: left;
+	border-right: 1px solid #000;
 }
 /* ==========================================================================
    Section 2
@@ -42,17 +45,31 @@ div.col-container div {
 	height: 58px;
 	background-image: url(../images/blue-circle.png);
 }
+div.ad-detail p{
+	font-size: 1.2em;
+	padding: 16px;
+}
+div.ad-left{
+	float: left;
+}
+div.ad-right{
+	float: right;
+}
 div.ad-left .ad-detail {
+	margin: 0;
+	z-index: 19;
+	position: relative;
+	top: -32px;
+	left: 270px;
+}
+div.ad-right .ad-detail {
 	margin: 0;
 	z-index: 19;
 	position: relative;
 	top: -32px;
 	left: -27px;
 }
-div.ad-right .ad-detail {
-
-}
 div.ad-left .ad-detail p{
-	padding: 18px;
+	
 }
 
