@@ -20,7 +20,7 @@
     <body>
         <div class="container">
             <header><h1>Razorfish PLD Test</h1></header>
-            <section class="text-cols block-content">
+            <section class="text-cols content-block">
                 <h2>Section 1</h2>
                 <div class="col-container">
                     <div>
@@ -47,7 +47,7 @@
                     </div>
                 </div>
             </section>
-            <section class="ad-section block-content">
+            <section class="ad-section content-block">
                 <h2>Section 2</h2>
                 <div class="ad-box ad-left">
                     <div class="ad-detail">
@@ -62,21 +62,42 @@
                     </div>                    
                 </div>              
             </section>
-            <section class="investment-section block-content">
+            <section id="investment-section" class="content-block">
                 <h2>Section 3</h2>
                 <form id="investment-form">
-                    <label>Investment cycle:</label>
-                    <select>
-                      <option value="jan-2013" data-date="jan-2013">January 2013</option>
-                      <option value="feb-2013" data-date="feb-2013">February 2013</option>
-                      <option value="mar-2013" data-date="mar-2013">March 2013</option>
-                    </select>
-                    </section>
-                    <label>Subsequent investments will occur on:</label>
-                    <input type="checkbox" name="q2" value="q2">Q2 2012<br>
-                    <input type="checkbox" name="q3" value="q3">Q3 2012<br>
-                    <input type="checkbox" name="q4" value="q4">Q4 2012
+                    <div class="investment-cycle">
+                        <label>Investment cycle:</label>
+                        <select>
+                          <option value="jan-2013" data-date="jan-2013">January 2013</option>
+                          <option value="feb-2013" data-date="feb-2013">February 2013</option>
+                          <option value="mar-2013" data-date="mar-2013">March 2013</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="investment-checkboxes">
+                        <div class="label-wrapper">
+                            <label>Subsequent investments will occur on:</label>
+                        </div>
+                        <div class="checkbox-wrapper">
+                            <div>
+                                <input type="checkbox" id="chkbox-a" name="q2" value="q2">
+                                <label for="chkbox-a">Q2 2012</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="chkbox-b" name="q3" value="q3">
+                                <label for="chkbox-b">Q3 2012</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="chkbox-c" name="q4" value="q4">
+                                <label for="chkbox-c">Q4 2012</label>
+                            </div>
+                        </div>
+                        <div class="invest-msg-box">
+                            <p>You may select up to two items.</p>
+                        </div>                        
+                    </div>
                 </form>
+            </section>
         </div>
 
         <!--[if lt IE 7]>

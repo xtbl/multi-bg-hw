@@ -9,11 +9,11 @@ body {
 	margin: 0 auto;
 	max-width: 95%;
 }
-.block-content {
+.content-block {
 	clear: both;
 	padding-top: 10px;
 }
-.block-content h2 {
+.content-block h2 {
 	width: 100%;
 	text-align: center;
 	border-top: 1px dashed #000;
@@ -32,6 +32,9 @@ div.col-container div {
 	float: left;
 	border-right: 1px solid #000;
 }
+.col-container .last-col {
+	border-right: none;
+}
 /* ==========================================================================
    Section 2
    ========================================================================== */
@@ -44,6 +47,8 @@ div.col-container div {
 	width: 58px;
 	height: 58px;
 	background-image: url(../images/blue-circle.png);
+	margin: 0;
+	position: relative;
 }
 div.ad-detail p{
 	font-size: 1.2em;
@@ -56,20 +61,39 @@ div.ad-right{
 	float: right;
 }
 div.ad-left .ad-detail {
-	margin: 0;
-	z-index: 19;
-	position: relative;
 	top: -32px;
 	left: 270px;
 }
 div.ad-right .ad-detail {
-	margin: 0;
-	z-index: 19;
-	position: relative;
 	top: -32px;
 	left: -27px;
 }
-div.ad-left .ad-detail p{
-	
-}
 
+#investment-section {
+	text-align: center;
+}
+/* ==========================================================================
+   Section 3
+   ========================================================================== */
+
+.investment-checkboxes {
+	padding-left: 25%;
+}
+.investment-checkboxes input[type=checkbox] {
+
+}
+.checkbox-wrapper {
+	max-width: 20%;
+	float: left;
+	padding: 10px;
+}
+.label-wrapper {
+	max-width: 40%;
+	float: left;
+	padding: 10px;
+}
+.invest-msg-box {
+	max-width: 20%;
+	float: left;
+	padding: 10px;
+}
