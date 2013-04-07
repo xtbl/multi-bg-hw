@@ -2,7 +2,7 @@ TO-DO
 
 
 Plan:
--simple markup first (use html5 with html5shiv etc like test): 2h
+-simple markup first (use html5 with html5shiv etc like test): 2h start:4:30pm looks basic at 6:30
 -functionality:	4h
 -look and feel details:	2h
 -crossbrowser testing and fixing:	2h

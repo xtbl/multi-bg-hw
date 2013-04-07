@@ -32,5 +32,27 @@ div.col-container div {
 /* ==========================================================================
    Section 2
    ========================================================================== */
+.ad-box {
+	width: 300px;
+	height: 250px;
+	background-image: url(../images/ad.jpg);
+}
+.ad-detail {
+	width: 58px;
+	height: 58px;
+	background-image: url(../images/blue-circle.png);
+}
+div.ad-left .ad-detail {
+	margin: 0;
+	z-index: 19;
+	position: relative;
+	top: -32px;
+	left: -27px;
+}
+div.ad-right .ad-detail {
 
+}
+div.ad-left .ad-detail p{
+	padding: 18px;
+}
 
