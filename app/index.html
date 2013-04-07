@@ -10,6 +10,8 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="stylesheet" type="text/css" href="components/html5-boilerplate/css/normalize.css">
+        <link rel="stylesheet" type="text/css" href="components/html5-boilerplate/css/main.css">
         <link rel="stylesheet" href="styles/main.css">
         <!-- build:js scripts/vendor/modernizr.js -->
         <script src="components/modernizr/modernizr.js"></script>
@@ -17,37 +19,74 @@
     </head>
     <body>
         <div class="container">
-            <div class="hero-unit">
-                <h1>'Allo, 'Allo!</h1>
-                <p>You now have</p>
-                <ul>
-                    <li>HTML5 Boilerplate</li>
-                    <li>Twitter Bootstrap</li>
-                </ul>
-                <p>installed.</p>
-                <h3>Enjoy coding! - Yeoman</h3>
-            </div>
+            <header><h1>Razorfish PLD Test</h1></header>
+            <section class="text-cols block-content">
+                <h2>Section 1</h2>
+                <div class="col-container">
+                    <div>
+                        <h3>DONEC MATTIS?</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pellentesque egestas eros, ac ullamcorper dui iaculis a. Aenean non malesuada purus. Donec augue tellus, mattis ut blandit nec, rhoncus quis erat. Morbi mattis erat a nibh imperdiet pellentesque</p>
+                    </div>                
+                    <div>
+                        <h3>CRAS BLANDIT</h3>
+                        <p>Nunc dictum mauris sed magna hendrerit sed tempus leo pulvinar. Phasellus iaculis pellentesque mauris ut tempus. Nullam commodo rhoncus interdum. Vivamus elit nibh, feugiat vel dignissim vitae, egestas et nunc. Etiam in est sed arcu hendrerit malesuada.</p>
+                    </div>
+                    <div class="last-col">
+                        <h3>NULLAM LACUS NULLA</h3>
+                        <p>Etiam rutrum lobortis odio sit amet suscipit. Praesent eleifend volutpat lectus, vel faucibus tellus interdum a. Aliquam in tellus elit, et dignissim dolor. Sed at libero orci. Cras sem magna, sodales id consequat eu, convallis sed lectus. Vestibulum scelerisque, felis ac molestie dictum, massa risus semper eros.</p>
+                    </div>
+                </div>
+                <div class="col-container">
+                    <div>
+                        <h3>SED IN UMA MASSA</h3>
+                        <p>Sed in urna massa, vitae mattis ligula. Proin sapien urna, elementum ac auctor nec, malesuada nec mi. Nullam sit amet felis sem, a adipiscing elit. Curabitur id nisi ac odio blandit vestibulum quis vel est.</p>
+                    </div>                
+                    <div class="last-col">
+                        <h3>MORBI MATTIS ODIO</h3>
+                        <p>Morbi mattis odio ut turpis congue eu molestie metus sollicitudin. Aliquam et risus ligula. Ut at varius nisl. Donec et lacus lacus, ac aliquet erat. Nullam id sagittis lorem. Phasellus tincidunt lorem eget erat ultrices facilisis. Nunc cursus mollis aliquet. Donec in elit est, a vestibulum est.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="ad-section block-content">
+                <h2>Section 2</h2>
+                <div class="ad ad-left">
+                    <div class="ad-detail">
+                        <p>AB</p>
+                    </div>
+                </div>
+                <div class="empty-spacer">
+                </div>
+                <div class="ad ad-right">
+                    <div class="ad-detail">
+                        <p>AB</p>
+                    </div>                    
+                </div>              
+            </section>
+            <section class="investment-section block-content">
+                <h2>Section 3</h2>
+                <form id="investment-form">
+                    <label>Investment cycle:</label>
+                    <select>
+                      <option value="jan-2013" data-date="jan-2013">January 2013</option>
+                      <option value="feb-2013" data-date="feb-2013">February 2013</option>
+                      <option value="mar-2013" data-date="mar-2013">March 2013</option>
+                    </select>
+                    </section>
+                    <label>Subsequent investments will occur on:</label>
+                    <input type="checkbox" name="q2" value="q2">Q2 2012<br>
+                    <input type="checkbox" name="q3" value="q3">Q3 2012<br>
+                    <input type="checkbox" name="q4" value="q4">Q4 2012
+                </form>
         </div>
 
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
-
         <!-- build:js scripts/main.js -->
         <script src="components/jquery/jquery.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 
-        <!-- build:js(.tmp) scripts/coffee.js -->
-        <script src="scripts/hello.js"></script>
-        <!-- endbuild -->
 </body>
 </html>

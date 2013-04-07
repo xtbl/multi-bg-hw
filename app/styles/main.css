@@ -1,8 +1,36 @@
+/*
+*	Cristobal Avila
+*
+*/
 body {
     background: #fafafa;
 }
-
-.hero-unit {
-    margin: 50px auto 0 auto;
-    width: 300px;
+.container {
+	margin: 0 auto;
+	max-width: 95%;
 }
+.col-container {
+	width: 100%;
+	clear: both;
+}
+
+div.col-container div {
+	width: 30%;
+	padding: 0.2% 1% 0.2% 1%;
+	float: left;
+	border-right: 1px solid #000;
+}
+.block-content {
+	clear: both;
+}
+.block-content h2 {
+	width: 100%;
+	text-align: center;
+	border-top: 1px dashed #000;
+	border-bottom: 1px dashed #000;
+}
+/* ==========================================================================
+   Section 2
+   ========================================================================== */
+
+
