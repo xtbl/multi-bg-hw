@@ -1,5 +1,5 @@
 /**
- * Investment Cycle
+ * Investment Cycle Test
  * 
  * by Cristobal Avila
  * 
@@ -11,25 +11,16 @@ APP.investment = (function($) {
 	//private
 	var date,
 	checkboxesChecked = 0,
-	monthSelect = 9,	//replace with real selection
+	monthSelect,	//replace with real selection
 	yearSelect,
 	selectedQuarter,
 
 	config = {
 		cycleSelector: $('#investment-cycle-selector'),
 		chkBoxes: $('.checkbox-wrapper input[type=checkbox]'),
-		msgBox: $('#invest-msg-box'), 
-		chkBox1: $('#chkbox-a'),
-		chkBox1Lbl: $('#lbl-chkbox-a'),
-		chkBox2: $('#chkbox-b'),
-		chkBox2Lbl: $('#lbl-chkbox-b'),
-		chkBox3: $('#chkbox-c'),
-		chkBox3Lbl: $('#lbl-chkbox-c'),
-
-		//TODO
-		// this should return an array of checkbox selects and another for labels
+		msgBox: $('#invest-msg-box')
 	},
-	//checkbox selector list. can be modified in here for convenience and also performance
+	//checkbox selector list. can be modified here for convenience
 	checkboxList = {
 		cb1: {
 			check: 	$('#chkbox-a'),
@@ -48,33 +39,24 @@ APP.investment = (function($) {
 	quarter = {
 		
 		getQuarterByMonth: function() {
-			selectedQuarter = Math.ceil(monthSelect / 3);
-			console.log('this quarter is: ' + selectedQuarter);
-		},
-		getNextInvestments: function(){
-
-
-			return 1; //returns quarter and year of the next 3 investments
+			var selectedQuarter = Math.ceil(monthSelect / 3);
+			
+			return selectedQuarter;
 		},
 		nextInvestments: function() {
-		var invQ1 = 1,
-			invYear1 = 1,
-			invQ2 = 2,
-			invYear2 = 2,
-			invQ3 = 3,
-			invYear3 = 3,
-			subseqQuarts = {
-				q1 : {
-					q: 		'',
-					year: 	'',
-					qText: 	'Q1-2013' 
-				}
-			},
-			nextQuarters = {
+		var month =	config.cycleSelector.find(":selected").data('month'),
+			year =	config.cycleSelector.find(":selected").data('year');
+
+		var selectedQuarter = Math.ceil(month / 3);
+		console.log('this quarter is: ' + selectedQuarter);
+
+		
+
+		var nextQuarters = {
 				nextQ1: {
 					q: 		'atestQ1',
-					year: 	getDateSelected().year,
-					qText: 	getDateSelected().month
+					year: 	year,
+					qText: 	month
 				},
 				nextQ2: {
 					q: 		'btestQ1',
@@ -94,29 +76,23 @@ APP.investment = (function($) {
 			return nextQuarters;	
 		}
 	},
-	getDateSelected = function() {
-		var selectedDate = {
-			month: 	config.cycleSelector.find(":selected").data('month'),
-			year: 	config.cycleSelector.find(":selected").data('year')
-		};
-		return selectedDate;
-	},
 	updateCheckboxes = function() {
 		//	TODO 
 		//	change this chkbox1 objects into an array to loop
 		//	generate the full Q1 2012 option
-		
+		var nextInvest = quarter.nextInvestments();
+
 		console.log('checkboxList scope test: '+checkboxList.cb1.check);
 
 		// assign subsequent investment values to checkboxes
-		checkboxList.cb1.check.attr('value', quarter.nextInvestments().nextQ1.q);
-		checkboxList.cb1.cLabel.text( quarter.nextInvestments().nextQ1.qText );
+		checkboxList.cb1.check.attr('value', nextInvest.nextQ1.q);
+		checkboxList.cb1.cLabel.text( nextInvest.nextQ1.qText );
 		
-		checkboxList.cb2.check.attr('value', quarter.nextInvestments().nextQ2.q);
-		checkboxList.cb2.cLabel.text( quarter.nextInvestments().nextQ2.qText );
+		checkboxList.cb2.check.attr('value', nextInvest.nextQ2.q);
+		checkboxList.cb2.cLabel.text( nextInvest.nextQ2.qText );
 		
-		checkboxList.cb3.check.attr('value', quarter.nextInvestments().nextQ3.q);
-		checkboxList.cb3.cLabel.text( quarter.nextInvestments().nextQ3.qText );
+		checkboxList.cb3.check.attr('value', nextInvest.nextQ3.q);
+		checkboxList.cb3.cLabel.text( nextInvest.nextQ3.qText );
 
 
 		// alternative version
@@ -194,7 +170,7 @@ APP.investment = (function($) {
 		//setQuarterYear(month,year)
 
 	};
-
+	//public
 	return {
 		init: init,
 		thisquarter: quarter.getQuarterByMonth,
