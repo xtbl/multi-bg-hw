@@ -45,28 +45,50 @@ APP.investment = (function($) {
 		},
 		nextInvestments: function() {
 		var month =	config.cycleSelector.find(":selected").data('month'),
-			year =	config.cycleSelector.find(":selected").data('year');
+			year =	config.cycleSelector.find(":selected").data('year'),
+			nextQuarterPattern,
+			nextYearPattern;
 
 		var selectedQuarter = Math.ceil(month / 3);
 		console.log('this quarter is: ' + selectedQuarter);
 
-		
+		switch(selectedQuarter) {
+			case 1:
+				nextQuarterPattern = [1,2,3];
+				nextYearPattern = [0,0,0];
+			break;
+			case 2:
+				nextQuarterPattern = [1,2,-1];
+				nextYearPattern = [0,0,1];
+			break;
+			case 3:
+				nextQuarterPattern = [1,-2,-1];
+				nextYearPattern = [0,1,1];
+			break;
+			case 4:
+				nextQuarterPattern = [-3,-2,-1];
+				nextYearPattern = [1,1,1];
+			break;
+			default:
+				console.log('No quarter selected.');
+		}
+		console.log('nQP: ' + nextQuarterPattern);
 
 		var nextQuarters = {
 				nextQ1: {
 					q: 		'atestQ1',
 					year: 	year,
-					qText: 	month
+					qText: 	'Q' + (selectedQuarter + nextQuarterPattern[0]) +' '+ (year + nextYearPattern[0])
 				},
 				nextQ2: {
 					q: 		'btestQ1',
 					year: 	'b2099',
-					qText: 	'bQ1-2013'	
+					qText: 	'Q' + (selectedQuarter + nextQuarterPattern[1]) +' '+ (year + nextYearPattern[1])
 				},
 				nextQ3: {
 					q: 		'ctestQ1',
 					year: 	'c2099',
-					qText: 	'cQ1-2013'
+					qText: 	'Q' + (selectedQuarter + nextQuarterPattern[2]) +' '+ (year + nextYearPattern[2])
 				}
 
 			};
