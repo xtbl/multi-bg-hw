@@ -1,26 +1,24 @@
 /**
- * Investment Cycle Test
- * 
- * by Cristobal Avila
- * 
+ * @website Razorfish PLD Test
+ * @description This file contains functions related to the "Razorfish PLD Test" investment cycle section, 
+ * also creates the namespace.
+ * @date 04/8/2013
+ * @author Cristobal Avila
+ * @version 1.0
+ * @dependencies requires at least jQuery 1.6
  */
 
-var APP = APP || {};
+var RZTEST = RZTEST || {};
 
-APP.investment = (function($) {
+RZTEST.investment = (function($) {
 	//private
-	var date,
-	checkboxesChecked = 0,
-	monthSelect,	//replace with real selection
-	yearSelect,
-	selectedQuarter,
-
+	var checkboxesChecked = 0,
+	// selector list. selectors can be modified here for convenience
 	config = {
 		cycleSelector: $('#investment-cycle-selector'),
 		chkBoxes: $('.checkbox-wrapper input[type=checkbox]'),
 		msgBox: $('#invest-msg-box')
 	},
-	//checkbox selector list. can be modified here for convenience
 	checkboxList = {
 		cb1: {
 			check: 	$('#chkbox-a'),
@@ -28,21 +26,15 @@ APP.investment = (function($) {
 		},
 		cb2: {
 			check: 	$('#chkbox-b'),
-			cLabel: $('#lbl-chkbox-b') 			
+			cLabel: $('#lbl-chkbox-b')		
 		},
 		cb3: {
 			check: 	$('#chkbox-c'),
-			cLabel: $('#lbl-chkbox-c') 			
+			cLabel: $('#lbl-chkbox-c')
 		}
-
 	}
 	quarter = {
-		
-		getQuarterByMonth: function() {
-			var selectedQuarter = Math.ceil(monthSelect / 3);
-			
-			return selectedQuarter;
-		},
+
 		nextInvestments: function() {
 		var month =	config.cycleSelector.find(":selected").data('month'),
 			year =	config.cycleSelector.find(":selected").data('year'),
@@ -50,11 +42,10 @@ APP.investment = (function($) {
 			nextYearPattern;
 
 		var selectedQuarter = Math.ceil(month / 3);
-		console.log('this quarter is: ' + selectedQuarter);
 
 		switch(selectedQuarter) {
 			case 1:
-				nextQuarterPattern = [1,2,3];
+				nextQuarterPattern =[1,2,3];
 				nextYearPattern = [0,0,0];
 			break;
 			case 2:
@@ -72,65 +63,35 @@ APP.investment = (function($) {
 			default:
 				console.log('No quarter selected.');
 		}
-		console.log('nQP: ' + nextQuarterPattern);
 
 		var nextQuarters = {
 				nextQ1: {
-					q: 		'atestQ1',
-					year: 	year,
-					qText: 	'Q' + (selectedQuarter + nextQuarterPattern[0]) +' '+ (year + nextYearPattern[0])
+					q: 	'Q' + (selectedQuarter + nextQuarterPattern[0]) +' '+ (year + nextYearPattern[0])
 				},
 				nextQ2: {
-					q: 		'btestQ1',
-					year: 	'b2099',
-					qText: 	'Q' + (selectedQuarter + nextQuarterPattern[1]) +' '+ (year + nextYearPattern[1])
+					q: 	'Q' + (selectedQuarter + nextQuarterPattern[1]) +' '+ (year + nextYearPattern[1])
 				},
 				nextQ3: {
-					q: 		'ctestQ1',
-					year: 	'c2099',
-					qText: 	'Q' + (selectedQuarter + nextQuarterPattern[2]) +' '+ (year + nextYearPattern[2])
+					q: 	'Q' + (selectedQuarter + nextQuarterPattern[2]) +' '+ (year + nextYearPattern[2])
 				}
 
 			};
-			// TODO
-			// this should return an array of quarters and year text format or 
-			// the same array in value format, you can use an options object
+
 			return nextQuarters;	
 		}
 	},
 	updateCheckboxes = function() {
-		//	TODO 
-		//	change this chkbox1 objects into an array to loop
-		//	generate the full Q1 2012 option
 		var nextInvest = quarter.nextInvestments();
-
-		console.log('checkboxList scope test: '+checkboxList.cb1.check);
 
 		// assign subsequent investment values to checkboxes
 		checkboxList.cb1.check.attr('value', nextInvest.nextQ1.q);
-		checkboxList.cb1.cLabel.text( nextInvest.nextQ1.qText );
+		checkboxList.cb1.cLabel.text( nextInvest.nextQ1.q );
 		
 		checkboxList.cb2.check.attr('value', nextInvest.nextQ2.q);
-		checkboxList.cb2.cLabel.text( nextInvest.nextQ2.qText );
+		checkboxList.cb2.cLabel.text( nextInvest.nextQ2.q );
 		
 		checkboxList.cb3.check.attr('value', nextInvest.nextQ3.q);
-		checkboxList.cb3.cLabel.text( nextInvest.nextQ3.qText );
-
-
-		// alternative version
-		//var nextInv = quarter.nextInvestments();
-		// assign subsequent investments values to checkboxes
-		/*
-		for(var i in checkboxList ){		
-			for(var j in nextInv ){
-				checkboxList[i].check.attr('value', nextInv[j].q);
-				checkboxList[i].cLabel.text( nextInv[j].qText );
-			console.log('nextInv is : ' + nextInv[j].q );
-			checkboxList.cb1.check.attr('test','this works inside for!');
-			}
-
-		}
-		*/
+		checkboxList.cb3.cLabel.text( nextInvest.nextQ3.q );
 
 		// uncheck all checkboxes
 		config.chkBoxes.attr('checked',false);
@@ -141,7 +102,6 @@ APP.investment = (function($) {
 			if( $(this).is(':checked') ){
 				checkboxesChecked += 1;
 			}
-			console.log( 'is checked: ' + $(this).is(':checked') );
 		});
 		// block attempt to select more than 2 checkboxes
 		if(checkboxesChecked === 2) {
@@ -151,7 +111,6 @@ APP.investment = (function($) {
 				if(!$(this).is(':checked') ){
 					$(this).attr('disabled', true);
 				}
-				console.log('checkbox disabled');
 			});
 		} else {
 			config.msgBox.css('display','none');
@@ -159,8 +118,6 @@ APP.investment = (function($) {
 				$(this).removeAttr('disabled');
 			});
 		}
-
-		console.log('checkbox checked: '+ checkboxesChecked);
 		checkboxesChecked = 0;
 	},
 	attachUIEvents = function() {
@@ -169,9 +126,6 @@ APP.investment = (function($) {
 			var usrSelection = config.cycleSelector.find(":selected").text();
 			var usrSelectionMonth = config.cycleSelector.find(":selected").data('month');
 			var usrSelectionYear = config.cycleSelector.find(":selected").data('year');
-			console.log('selected: ' + usrSelection);
-			console.log('selected month: ' + usrSelectionMonth);
-			console.log('selected year: ' + usrSelectionYear);
 			updateCheckboxes();
 		});
 		// checkbox change
@@ -181,25 +135,17 @@ APP.investment = (function($) {
 
 	},
 
-
-	// validate avoid more than two checks http://api.jquery.com/attr/
-	
 	init = function() {
 		console.log('init!');
 		attachUIEvents();
-
-		//getMonthQuarter( monthNum )
-		//setQuarterYear(month,year)
-
 	};
 	//public
 	return {
 		init: init,
 		thisquarter: quarter.getQuarterByMonth,
-		nextInvestments: quarter.nextInvestments,
-		monthSelect: monthSelect
+		nextInvestments: quarter.nextInvestments
 	};
 
 }(jQuery));
 
-APP.investment.init();
+RZTEST.investment.init();

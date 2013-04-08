@@ -1,7 +1,9 @@
-/*
-*	Cristobal Avila
-*
-*/
+/**
+ * Investment Cycle Test
+ * 
+ * by Cristobal Avila
+ * 
+ */
 body {
     background-color: #a2a392;
 }
@@ -12,7 +14,7 @@ p, h1, h2, h3{
 
 .container {
 	margin: 0 auto;
-	max-width: 95%;
+	max-width: 90%;
 	background-color: #ffffff;
 }
 .content-block {
@@ -66,9 +68,13 @@ div.ad-detail p{
 }
 div.ad-left{
 	float: left;
+	position: relative;
+	left: -20px;
 }
 div.ad-right{
 	float: right;
+	position: relative;
+	right: -20px;
 }
 div.ad-left .ad-detail {
 	top: -32px;
