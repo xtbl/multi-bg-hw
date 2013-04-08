@@ -17,6 +17,7 @@ APP.investment = (function($) {
 
 	config = {
 		cycleSelector: $('#investment-cycle-selector'),
+		msgBox: $('#invest-msg-box'), 
 		chkBox1: $('#chkbox-a'),
 		chkBox1Lbl: $('#lbl-chkbox-a'),
 		chkBox2: $('#chkbox-b'),
@@ -127,16 +128,34 @@ APP.investment = (function($) {
 
 		// uncheck all checkboxes
 		$('.checkbox-wrapper input[type=checkbox]').attr('checked',false);
+		checkboxValidation()
 	},
 	checkboxValidation = function() {
-		//checkboxesChecked = 0;
 		$('.checkbox-wrapper input[type=checkbox]').each(function() {
 			if( $(this).is(':checked') ){
 				checkboxesChecked += 1;
 			}
 			console.log( 'is checked: ' + $(this).is(':checked') );
 		});
+		// block attempt to select more than 2 checkboxes
+		if(checkboxesChecked == 2) {
+			config.msgBox.fadeIn(200);
+			//disable extra checkbox
+			$('.checkbox-wrapper input[type=checkbox]').each(function() {
+				if(!$(this).is(':checked') ){
+					$(this).attr('disabled', true);
+				}
+				console.log('checkbox disabled');
+			});
+		} else {
+			config.msgBox.css('display','none');
+			$('.checkbox-wrapper input[type=checkbox]').each(function() {
+					$(this).removeAttr('disabled');
+			});
+		}
+
 		console.log('checkbox checked: '+ checkboxesChecked);
+		checkboxesChecked = 0;
 	},
 	attachUIEvents = function() {
 		// investment cycle selection

@@ -92,8 +92,12 @@ div.ad-right .ad-detail {
 	float: left;
 	padding: 10px;
 }
-.invest-msg-box {
-	max-width: 20%;
+#invest-msg-box {
+	display: none;
+	max-width: 34%;
+	height: 5%;
 	float: left;
 	padding: 10px;
+	background-color: #ffcc99;
+	border: 1px solid #ff0000;
 }
