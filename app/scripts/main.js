@@ -11,12 +11,13 @@ APP.investment = (function($) {
 	//private
 	var date,
 	checkboxesChecked = 0,
-	monthSelect = 12,	//replace with real selection
+	monthSelect = 9,	//replace with real selection
 	yearSelect,
 	selectedQuarter,
 
 	config = {
 		cycleSelector: $('#investment-cycle-selector'),
+		chkBoxes: $('.checkbox-wrapper input[type=checkbox]'),
 		msgBox: $('#invest-msg-box'), 
 		chkBox1: $('#chkbox-a'),
 		chkBox1Lbl: $('#lbl-chkbox-a'),
@@ -55,7 +56,7 @@ APP.investment = (function($) {
 
 			return 1; //returns quarter and year of the next 3 investments
 		},
-		nextInvestments: function(quart, yr) {
+		nextInvestments: function() {
 		var invQ1 = 1,
 			invYear1 = 1,
 			invQ2 = 2,
@@ -72,8 +73,8 @@ APP.investment = (function($) {
 			nextQuarters = {
 				nextQ1: {
 					q: 		'atestQ1',
-					year: 	'a2099',
-					qText: 	'aQ1-2013'
+					year: 	getDateSelected().year,
+					qText: 	getDateSelected().month
 				},
 				nextQ2: {
 					q: 		'btestQ1',
@@ -93,7 +94,14 @@ APP.investment = (function($) {
 			return nextQuarters;	
 		}
 	},
-	updateCheckboxes = function(){
+	getDateSelected = function() {
+		var selectedDate = {
+			month: 	config.cycleSelector.find(":selected").data('month'),
+			year: 	config.cycleSelector.find(":selected").data('year')
+		};
+		return selectedDate;
+	},
+	updateCheckboxes = function() {
 		//	TODO 
 		//	change this chkbox1 objects into an array to loop
 		//	generate the full Q1 2012 option
@@ -127,21 +135,21 @@ APP.investment = (function($) {
 		*/
 
 		// uncheck all checkboxes
-		$('.checkbox-wrapper input[type=checkbox]').attr('checked',false);
+		config.chkBoxes.attr('checked',false);
 		checkboxValidation()
 	},
 	checkboxValidation = function() {
-		$('.checkbox-wrapper input[type=checkbox]').each(function() {
+		config.chkBoxes.each(function() {
 			if( $(this).is(':checked') ){
 				checkboxesChecked += 1;
 			}
 			console.log( 'is checked: ' + $(this).is(':checked') );
 		});
 		// block attempt to select more than 2 checkboxes
-		if(checkboxesChecked == 2) {
+		if(checkboxesChecked === 2) {
 			config.msgBox.fadeIn(200);
 			//disable extra checkbox
-			$('.checkbox-wrapper input[type=checkbox]').each(function() {
+			config.chkBoxes.each(function() {
 				if(!$(this).is(':checked') ){
 					$(this).attr('disabled', true);
 				}
@@ -149,8 +157,8 @@ APP.investment = (function($) {
 			});
 		} else {
 			config.msgBox.css('display','none');
-			$('.checkbox-wrapper input[type=checkbox]').each(function() {
-					$(this).removeAttr('disabled');
+			config.chkBoxes.each(function() {
+				$(this).removeAttr('disabled');
 			});
 		}
 
@@ -161,11 +169,15 @@ APP.investment = (function($) {
 		// investment cycle selection
 		config.cycleSelector.change(function(){
 			var usrSelection = config.cycleSelector.find(":selected").text();
+			var usrSelectionMonth = config.cycleSelector.find(":selected").data('month');
+			var usrSelectionYear = config.cycleSelector.find(":selected").data('year');
 			console.log('selected: ' + usrSelection);
+			console.log('selected month: ' + usrSelectionMonth);
+			console.log('selected year: ' + usrSelectionYear);
 			updateCheckboxes();
 		});
 		// checkbox change
-		$('.checkbox-wrapper input[type=checkbox]').change(function(){
+		config.chkBoxes.change(function(){
 			checkboxValidation();
 		});
 
@@ -177,6 +189,7 @@ APP.investment = (function($) {
 	init = function() {
 		console.log('init!');
 		attachUIEvents();
+
 		//getMonthQuarter( monthNum )
 		//setQuarterYear(month,year)
 
@@ -185,7 +198,8 @@ APP.investment = (function($) {
 	return {
 		init: init,
 		thisquarter: quarter.getQuarterByMonth,
-		nextInvestments: quarter.nextInvestments
+		nextInvestments: quarter.nextInvestments,
+		monthSelect: monthSelect
 	};
 
 }(jQuery));

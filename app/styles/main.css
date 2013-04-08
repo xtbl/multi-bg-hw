@@ -3,11 +3,17 @@
 *
 */
 body {
-    background: #fafafa;
+    background-color: #a2a392;
 }
+p, h1, h2, h3{
+	color: #484848;
+	font-weight: normal;
+}
+
 .container {
 	margin: 0 auto;
 	max-width: 95%;
+	background-color: #ffffff;
 }
 .content-block {
 	clear: both;
@@ -18,6 +24,10 @@ body {
 	text-align: center;
 	border-top: 1px dashed #000;
 	border-bottom: 1px dashed #000;
+}
+header h1{
+	 padding: 20px 0 0 20px;
+	 margin-bottom: 0px;
 }
 /* ==========================================================================
    Section 1
@@ -95,9 +105,22 @@ div.ad-right .ad-detail {
 #invest-msg-box {
 	display: none;
 	max-width: 34%;
-	height: 5%;
+	height: 40px;
 	float: left;
 	padding: 10px;
 	background-color: #ffcc99;
 	border: 1px solid #ff0000;
+}
+#invest-msg-box p{
+	font-size: 0.9em;
+}
+#copyright {
+	width: 100%;
+	height: 50px;
+	background-color: #a2a392;
+	clear: both;
+	text-align: center;
+}
+#copyright p{
+	padding: 10px;
 }
